@@ -16,6 +16,7 @@ public class Program {
 		ChessMatch chessMatch = new ChessMatch();
 		
 		while (true) {
+			try {
 				UI.clearScreen();
 				UI.printBoard(chessMatch.getPieces());
 				System.out.println();
@@ -27,6 +28,16 @@ public class Program {
 				ChessPosition target = UI.readChessPosition(sc);
 				
 				ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
-		}		
+		
+			}	
+			catch (ChessException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			}
+		}
 	}
 }
